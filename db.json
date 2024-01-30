@@ -1,0 +1,98 @@
+{
+  "users": [
+    {
+      "id": "24d2",
+      "name": "sajjan",
+      "password": "852",
+      "fname": "sajjan",
+      "email": "sajjanvinodkumawat@gmail.com"
+    },
+    {
+      "id": "ab02",
+      "name": "kashyap21",
+      "password": "124",
+      "fname": "kashyap",
+      "email": "kashyap@gmail.com"
+    }
+  ],
+  "product": [
+    {
+      "id": "0",
+      "name": "Boat Lunar Prime",
+      "price": "2,599.00",
+      "qty": 1,
+      "image": "https://sp.yimg.com/ib/th?id=OPA.ZgCVprmMY0V%2bfw474C474&o=5&pid=21.1&w=&h="
+    },
+    {
+      "id": "1",
+      "name": "NOISE Colorfit Pro",
+      "price": "9,999.00",
+      "qty": 1,
+      "image": "https://m.media-amazon.com/images/I/41bRs-NukeL._SX300_SY300_QL70_FMwebp_.jpg"
+    },
+    {
+      "id": "2",
+      "name": "Fire-Boltt Supernova ",
+      "price": "1,999.00",
+      "qty": 1,
+      "image": "https://sp.yimg.com/ib/th?id=OPA.oRKkQrtxAYyeIA474C474&o=5&pid=21.1&w=&h="
+    },
+    {
+      "id": "3",
+      "name": "Apple Series 9",
+      "price": "44,900.00",
+      "qty": 1,
+      "image": "https://m.media-amazon.com/images/I/810wzMG3BJL._AC_UY327_FMwebp_QL65_.jpg"
+    }
+  ],
+  "cart": [
+    {
+      "id": "e843",
+      "userId": "24d2",
+      "product": {
+        "id": "0",
+        "name": "Boat Lunar Prime",
+        "price": "2,599.00",
+        "qty": 1,
+        "image": "https://sp.yimg.com/ib/th?id=OPA.ZgCVprmMY0V%2bfw474C474&o=5&pid=21.1&w=&h="
+      },
+      "quantity": 1
+    },
+    {
+      "id": "985d",
+      "userId": "24d2",
+      "product": {
+        "id": "0",
+        "name": "Boat Lunar Prime",
+        "price": "2,599.00",
+        "qty": 1,
+        "image": "https://sp.yimg.com/ib/th?id=OPA.ZgCVprmMY0V%2bfw474C474&o=5&pid=21.1&w=&h="
+      },
+      "quantity": 2
+    },
+    {
+      "id": "87cf",
+      "userId": "24d2",
+      "product": {
+        "id": "0",
+        "name": "Boat Lunar Prime",
+        "price": "2,599.00",
+        "qty": 1,
+        "image": "https://sp.yimg.com/ib/th?id=OPA.ZgCVprmMY0V%2bfw474C474&o=5&pid=21.1&w=&h="
+      },
+      "quantity": 2
+    },
+    {
+      "id": "fa62",
+      "userId": "24d2",
+      "product": {
+        "id": "1",
+        "name": "NOISE Colorfit Pro",
+        "price": "9,999.00",
+        "qty": 1,
+        "image": "https://m.media-amazon.com/images/I/41bRs-NukeL._SX300_SY300_QL70_FMwebp_.jpg"
+      },
+      "quantity": 1
+    }
+  ]
+}
