@@ -13,84 +13,110 @@
       "password": "124",
       "fname": "kashyap",
       "email": "kashyap@gmail.com"
+    },
+    {
+      "id": "cd49",
+      "name": "om",
+      "password": "1234",
+      "fname": "omprakash",
+      "email": "om@gmail.com"
+    },
+    {
+      "id": "fa30",
+      "name": "jay",
+      "password": "222",
+      "fname": "jay",
+      "email": "jay@gmail.com"
     }
   ],
   "product": [
     {
       "id": "0",
       "name": "Boat Lunar Prime",
-      "price": "2,599.00",
+      "price": 2599,
       "qty": 1,
       "image": "https://sp.yimg.com/ib/th?id=OPA.ZgCVprmMY0V%2bfw474C474&o=5&pid=21.1&w=&h="
     },
     {
       "id": "1",
       "name": "NOISE Colorfit Pro",
-      "price": "9,999.00",
+      "price": 9999,
       "qty": 1,
       "image": "https://m.media-amazon.com/images/I/41bRs-NukeL._SX300_SY300_QL70_FMwebp_.jpg"
     },
     {
       "id": "2",
       "name": "Fire-Boltt Supernova ",
-      "price": "1,999.00",
+      "price": 1999,
       "qty": 1,
       "image": "https://sp.yimg.com/ib/th?id=OPA.oRKkQrtxAYyeIA474C474&o=5&pid=21.1&w=&h="
     },
     {
       "id": "3",
       "name": "Apple Series 9",
-      "price": "44,900.00",
+      "price": 44900,
       "qty": 1,
       "image": "https://m.media-amazon.com/images/I/810wzMG3BJL._AC_UY327_FMwebp_QL65_.jpg"
     }
   ],
   "cart": [
     {
-      "id": "e843",
-      "userId": "24d2",
+      "userId": "cd49",
       "product": {
         "id": "0",
         "name": "Boat Lunar Prime",
-        "price": "2,599.00",
+        "price": 2599,
         "qty": 1,
         "image": "https://sp.yimg.com/ib/th?id=OPA.ZgCVprmMY0V%2bfw474C474&o=5&pid=21.1&w=&h="
+      },
+      "quantity": 2,
+      "id": "826e"
+    },
+    {
+      "id": "2145",
+      "userId": "cd49",
+      "product": {
+        "id": "3",
+        "name": "Apple Series 9",
+        "price": 44900,
+        "qty": 1,
+        "image": "https://m.media-amazon.com/images/I/810wzMG3BJL._AC_UY327_FMwebp_QL65_.jpg"
       },
       "quantity": 1
     },
     {
-      "id": "985d",
-      "userId": "24d2",
+      "userId": "fa30",
       "product": {
         "id": "0",
         "name": "Boat Lunar Prime",
-        "price": "2,599.00",
+        "price": 2599,
         "qty": 1,
         "image": "https://sp.yimg.com/ib/th?id=OPA.ZgCVprmMY0V%2bfw474C474&o=5&pid=21.1&w=&h="
       },
-      "quantity": 2
+      "quantity": 1,
+      "id": "a95b"
     },
     {
-      "id": "87cf",
-      "userId": "24d2",
+      "id": "b24c",
+      "userId": "fa30",
       "product": {
-        "id": "0",
-        "name": "Boat Lunar Prime",
-        "price": "2,599.00",
+        "id": "2",
+        "name": "Fire-Boltt Supernova ",
+        "price": 1999,
         "qty": 1,
-        "image": "https://sp.yimg.com/ib/th?id=OPA.ZgCVprmMY0V%2bfw474C474&o=5&pid=21.1&w=&h="
+        "image": "https://sp.yimg.com/ib/th?id=OPA.oRKkQrtxAYyeIA474C474&o=5&pid=21.1&w=&h="
       },
-      "quantity": 2
+      "quantity": 1
     },
     {
-      "id": "fa62",
+      "id": "91c8",
       "userId": "24d2",
       "product": {
-        "id": "1",
-        "name": "NOISE Colorfit Pro",
-        "price": "9,999.00",
+        "id": "2",
+        "name": "Fire-Boltt Supernova ",
+        "price": 1999,
         "qty": 1,
-        "image": "https://m.media-amazon.com/images/I/41bRs-NukeL._SX300_SY300_QL70_FMwebp_.jpg"
+        "image": "https://sp.yimg.com/ib/th?id=OPA.oRKkQrtxAYyeIA474C474&o=5&pid=21.1&w=&h="
       },
       "quantity": 1
     }

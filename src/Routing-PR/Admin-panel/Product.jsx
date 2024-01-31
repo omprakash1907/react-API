@@ -52,7 +52,7 @@ const Product = ({ loggedInuser }) => {
             setCount(updatedCart.length);
         } else {
             const updatedItem = cart.find((item) => item.product.id === id)
-            const response = await fetch(`http://localhost:5000/cart`, {
+            const response = await fetch(`http://localhost:5000/cart/${updatedItem.id}`, {
                 method: 'PUT',
                 body: JSON.stringify({
                     userId: loggedInuser.id,
@@ -62,9 +62,8 @@ const Product = ({ loggedInuser }) => {
             });
 
             const updatedCart = await response.json();
-            
+            setCart(updatedCart)
            
-            console.log(updatedCart)
         }
         fetchCart()
 

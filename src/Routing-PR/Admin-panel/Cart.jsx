@@ -1,58 +1,124 @@
 import React, { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { Count, Decrement, Delete, DeleteAll, Increment } from './reduxThunk/Action';
 
-const Cart = ({loggedInuser}) => {
+const Cart = ({ loggedInuser }) => {
     // const cart = useSelector((state) => state.cart);
     const [cart, setCart] = useState()
-    const total = useSelector((state) => state.total)
+    const [product, setProduct] = useState()
     const [noRecords, setNoRecords] = useState(false);
-
-    const Discount = 0.15
-    const dispatch = useDispatch();
+    const [total, setTotal] = useState(0);
+    const Discount = 15
 
 
     useEffect(() => {
+        fetchProduct()
         fetchCart()
-    }, [])
+    }, [cart])
 
-    const fetchCart = async () => {
-        const respose = await fetch('http://localhost:5000/cart', {
+
+  
+
+
+
+    const fetchProduct = async () => {
+        const respose = await fetch('http://localhost:5000/product', {
             method: "GET",
         })
 
-        const cart = await respose.json()
-        
-        
-        // const itemExist = cart.product
-        const userCart = cart.filter((item,id) => loggedInuser.id === item.userId );
+        const product = await respose.json()
+        setProduct(product)
+    }
+
+    const fetchCart = async () => {
+        const response = await fetch(`http://localhost:5000/cart?userId=${loggedInuser.id}`, {
+            method: 'GET',
+        });
+
+        const cart = await response.json()
+
+        const userCart = cart.filter((item, id) => loggedInuser.id === item.userId);
         setCart(userCart);
 
         if (userCart.length === 0) {
             setNoRecords(true);
+            setTotal(0)
         } else {
             setNoRecords(false);
+            const subtotal = userCart.reduce((acc, item) => acc + item.quantity * item.product.price, 0);
+            setTotal(subtotal);
+
+
+            // console.log(subtotal);
         }
     }
 
 
 
-    const handleDelete = (id) => {
-        dispatch(Delete(id))
-    }
+    const handleDelete = async (itemId) => {
+        try {
+            const response = await fetch(`http://localhost:5000/cart/${itemId}`, {
+                method: 'DELETE',
+            });
 
-    const handleIncrement = (id) => {
-        dispatch(Increment(id))
-        // console.log(id)
+            if (response.ok) {
+                const updatedCart = cart.filter((item) => item.id !== itemId);
+                setCart(updatedCart);
+
+                if (updatedCart.length === 0) {
+                    setNoRecords(true);
+                }
+            } else {
+                console.error('Failed to delete item from the server');
+            }
+        } catch (error) {
+            console.error('Error deleting item:', error);
+        }
+    };
+
+
+
+    const handleIncrement = async (id) => {
+        const updatedItem = cart.find((item) => item.product.id === id);
+        const response = await fetch(`http://localhost:5000/cart/${updatedItem.id}`, {
+            method: 'PUT',
+            body: JSON.stringify({
+                userId: loggedInuser.id,
+                product: product.find((item) => item.id === id),
+                quantity: updatedItem.quantity + 1
+            })
+        });
+
+        const updatedCart = await response.json();
+        const updatedCartArray = cart.map((item) =>
+            item.product.id === id ? { ...item, quantity: item.quantity + 1 } : item
+        );
+
+        setCart(updatedCartArray);
+
     }
-    const handleDecrement = (id) => {
-        dispatch(Decrement(id))
-        // console.log(id)
+    const handleDecrement = async (id) => {
+        const updatedItem = cart.find((item) => item.product.id === id);
+        if (updatedItem.quantity > 1) {
+            const response = await fetch(`http://localhost:5000/cart/${updatedItem.id}`, {
+                method: 'PUT',
+                body: JSON.stringify({
+                    userId: loggedInuser.id,
+                    product: product.find((item) => item.id === id),
+                    quantity: updatedItem.quantity - 1
+                })
+            });
+
+            const updatedCart = await response.json();
+            const updatedCartArray = cart.map((item) =>
+                item.product.id === id ? { ...item, quantity: item.quantity - 1 } : item
+            );
+
+            setCart(updatedCartArray);
+        }
     }
-    const handleDeleteAll = () => {
-        dispatch(DeleteAll())
-    }
+ 
+
+
 
     // console.log(userCart)
 
@@ -64,7 +130,6 @@ const Cart = ({loggedInuser}) => {
                 </div>
                 <div>
                     <Link className='btn btn-primary px-4 py-6 fs-6 me-2' to={'/product'}>Product<i className="fa-solid fa-cart-arrow-down ms-2"></i></Link>
-                    <Link className='btn btn-danger  px-4 py-6 fs-6' onClick={handleDeleteAll} >Delete All<i className="fa-solid fa-trash-can ms-2"></i></Link>
                 </div>
             </div>
 
@@ -98,11 +163,11 @@ const Cart = ({loggedInuser}) => {
                                                         <img src={item.product.image} alt="" className='img-fluid' style={{ height: '70px', width: "70px", borderRadius: "3px" }} />
                                                         <span className='ms-3'>{item.product.name}</span></td>
                                                     <td >
-                                                        <button className='btn  text-white rounded-0 ' style={{ border: "1px solid #bfc8de" }} onClick={() => handleIncrement(id)}>+</button>
-                                                        <span className='btn text-theme rounded-0 ' style={{ border: "1px solid #bfc8de" }}>{item.product.qty}</span>
-                                                        <button className='btn text-white rounded-0 ' style={{ border: "1px solid #bfc8de" }} onClick={() => handleDecrement(id)}>-</button></td>
-                                                    <td>${item.product.price}</td>
-                                                    <td><button className='btn' onClick={() => handleDelete(id)}><i class="fa-solid fa-trash-can text-danger fs-5"></i></button></td>
+                                                        <button className='btn  text-white rounded-0 ' style={{ border: "1px solid #bfc8de" }} onClick={() => handleIncrement(item.product.id)}>+</button>
+                                                        <span className='btn text-theme rounded-0 ' style={{ border: "1px solid #bfc8de" }}>{item.quantity}</span>
+                                                        <button className='btn text-white rounded-0 ' style={{ border: "1px solid #bfc8de" }} onClick={() => handleDecrement(item.product.id)}>-</button></td>
+                                                    <td>Rs. {item.product.price}</td>
+                                                    <td><button className='btn' onClick={() => handleDelete(item.id)}><i class="fa-solid fa-trash-can text-danger fs-5"></i></button></td>
                                                 </tr>
                                             )
                                         })
@@ -134,9 +199,9 @@ const Cart = ({loggedInuser}) => {
                                         <td>Shipping</td>
                                         <td>Free</td>
                                     </tr>
-                                    <tr className='fw-bold fs-5'>
+                                    <tr className='fw-bold fs-6'>
                                         <td >Total</td>
-                                        <td>$ {total - (Discount * total)}</td>
+                                        <td>Rs. {total - (Discount)/100}</td>
                                     </tr>
 
                                 </tbody>

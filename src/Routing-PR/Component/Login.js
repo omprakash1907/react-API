@@ -26,7 +26,7 @@ const Login = ({ setIsLoggedIn, setLoggedInuser}) => {
         })
 
         const user = await respose.json()
-        const findUser = user.find((item) => item.name === input.name && item.password === input.password)
+        const findUser = user.find((item) => item.email === input.email && item.password === input.password)
         if (findUser) {
             swal("Succesfully Login!", "You clicked the button!", "success");
             setIsLoggedIn(true)
@@ -47,7 +47,7 @@ const Login = ({ setIsLoggedIn, setLoggedInuser}) => {
                 <form class="form" onSubmit={handleSubmit}>
                     <div class="input-group">
                         <label for="username">Username / Email</label>
-                        <input type="text" name="name" id="username" placeholder="Enter Your Username" onChange={handleChange} />
+                        <input type="email" name="email" id="username" placeholder="Enter Your Username" onChange={handleChange} />
                         <ToastContainer />
                     </div>
                     <div class="input-group">
