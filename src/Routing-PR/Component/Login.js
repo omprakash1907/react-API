@@ -46,7 +46,7 @@ const Login = ({ setIsLoggedIn, setLoggedInuser}) => {
                 <p class="title">Login</p>
                 <form class="form" onSubmit={handleSubmit}>
                     <div class="input-group">
-                        <label for="username">Username / Email</label>
+                        <label for="username">Email</label>
                         <input type="email" name="email" id="username" placeholder="Enter Your Username" onChange={handleChange} />
                         <ToastContainer />
                     </div>

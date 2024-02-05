@@ -27,6 +27,13 @@
       "password": "222",
       "fname": "jay",
       "email": "jay@gmail.com"
+    },
+    {
+      "id": "6f2d",
+      "name": "kevin",
+      "password": "12345",
+      "fname": "kevin",
+      "email": "kevin@gmail.com"
     }
   ],
   "product": [
